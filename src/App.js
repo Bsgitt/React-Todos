@@ -5,18 +5,23 @@ import {
   Route,
 } from "react-router-dom";
 import "./App.css";
+import {AuthProvider} from './context/Auth/AuthContext'
 import Dashboard from "./components/todos";
-import Home from "./pages/Home";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import PriveRoute from "./PrivateRoute";
 function App() {
   return (
     <>
+    <AuthProvider>
     <Router>
       <Switch>
-        <Route path='/dashboard' component={Dashboard}/>
-        <Home/>
+        <PriveRoute exact path='/dashboard' component={Dashboard}/>
+        <Route path='/signin' component={SignIn}/>
+        <Route path='/signUp' component={SignUp}/>
       </Switch>
     </Router>
-     
+    </AuthProvider>
     </>
   );
 }
