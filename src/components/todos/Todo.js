@@ -4,8 +4,9 @@ import { RiCloseCircleLine } from "react-icons/ri";
 import { TiEdit } from "react-icons/ti";
 
 const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
-
+  
   const [edit, setEdit] = useState({
+    //UPDATE FoRM FIREBASELOGI
     id: null,
     value: "",
   });
@@ -14,7 +15,7 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
     updateTodo(edit.id, value);
     setEdit({
       id: null,
-      value: "",
+      value: todos.todo
     });
   };
 

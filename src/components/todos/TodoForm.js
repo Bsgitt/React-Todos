@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { db } from '../../services/firebase';
+import firebase from 'firebase'
 function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
@@ -15,11 +16,12 @@ function TodoForm(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-
-    props.onSubmit({
-      id:uuidv4,
-      todo:input
-    });
+    props.onSubmit( db.collection('todos').add({
+      todo:input,
+      completeTodo:false,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    }))
+   
     setInput('');
   };
 
@@ -27,13 +29,13 @@ function TodoForm(props) {
     <form onSubmit={handleSubmit} className='flex justify-center'>
       {props.edit ? (
         <>
-          <input
+           <input
             placeholder='Update your item'
             value={input}
             onChange={handleChange}
             name='text'
             ref={inputRef}
-            className=''
+            className='todo-input edit'
           />
           <button onClick={handleSubmit} className='todo-button edit'>
             Update
