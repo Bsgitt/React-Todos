@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { db } from '../../services/firebase';
 import firebase from 'firebase'
+import { AuthContext } from '../../context/Auth/AuthContext';
 function TodoForm(props) {
+  const {currentUser}= useContext(AuthContext)
+  const currentUserId = currentUser ? currentUser.uid : null
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const inputRef = useRef(null);
@@ -17,6 +20,7 @@ function TodoForm(props) {
   const handleSubmit = e => {
     e.preventDefault();
     props.onSubmit( db.collection('todos').add({
+      uid:currentUserId,
       todo:input,
       completeTodo:false,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()

@@ -1,22 +1,15 @@
-import React from 'react';
-
+import React from "react";
+import Layout from "./Layouts/Layout";
+import Service from "./Layouts/Service";
+import About from "../pages/Layouts/About";
+import Footer from "./Layouts/Footer";
 export default function Home() {
   return (
     <>
-    <div>
-        <div className='text-2xl text-white text-center'>
-          <p>Welcome to TodoList </p>
-          
-        </div>
-        <div>
-            <div>
-                <div>
-                    <p>you can manage something for Free</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+      <Layout />
+      <Service />
+      <About />
+      <Footer/>
     </>
   );
 }
