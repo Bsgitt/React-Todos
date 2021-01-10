@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Img2 from "../../img/ing.svg";
-function Layout() {
+function Hero() {
   return (
     <>
       <div>
@@ -21,7 +21,7 @@ function Layout() {
               </p>
               <div className="flex justify-center ">
                 <button className="flex justify-center bg-green-400 hover:bg-green-600 text-white font-bold py-2 px-2 border w-1/3 border-green-200 rounded">
-                  <Link to='/signup'>Get Start</Link>
+                  <Link to='/signin'>Get Start</Link>
                 </button>
               </div>
             </div>
@@ -36,4 +36,4 @@ function Layout() {
     </>
   );
 }
-export default Layout;
+export default Hero;
